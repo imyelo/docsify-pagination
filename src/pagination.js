@@ -21,9 +21,9 @@ export function install (hook, vm) {
 }
 
 function pagination (vm) {
-  let path = vm.route.path
-  let items = Array.prototype.slice.call(query.all('.sidebar li a')).filter((element) => !matches(element, '.section-link'))
-  let active = items.findIndex((link) => link.getAttribute('href') === `#${path}`)
+  const path = vm.route.path
+  const items = Array.prototype.slice.call(query.all('.sidebar li a')).filter((element) => !matches(element, '.section-link'))
+  const active = items.findIndex((link) => link.getAttribute('href') === `#${path}`)
   return {
     prev: link(items[active - 1]),
     next: link(items[active + 1]),
