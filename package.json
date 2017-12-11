@@ -5,7 +5,8 @@
   "main": "src",
   "scripts": {
     "start": "webpack . dist/docsify-pagination.js -w",
-    "build": "webpack . dist/docsify-pagination.js && webpack . -p dist/docsify-pagination.min.js"
+    "build": "webpack . dist/docsify-pagination.js && webpack . -p dist/docsify-pagination.min.js",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
