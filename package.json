@@ -1,0 +1,37 @@
+{
+  "name": "docsify-pagination",
+  "version": "1.0.0",
+  "description": "pagination plugin of docsify",
+  "main": "src",
+  "scripts": {
+    "start": "webpack . dist/docsify-pagination.js -w",
+    "build": "webpack . dist/docsify-pagination.js && webpack . -p dist/docsify-pagination.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/imyelo/docsify-pagination.git"
+  },
+  "keywords": [
+    "docsify",
+    "pagination"
+  ],
+  "files": [
+    "src",
+    "dist",
+    "README.md"
+  ],
+  "author": "yelo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imyelo/docsify-pagination/issues"
+  },
+  "homepage": "https://github.com/imyelo/docsify-pagination#readme",
+  "dependencies": {
+    "component-matches-selector": "^0.1.6",
+    "component-query": "0.0.3",
+    "insert-css": "^2.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.5.4"
+  }
+}

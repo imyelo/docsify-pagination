@@ -1,0 +1,3 @@
+- [Home](/)
+- [Foo](foo.md)
+- [Bar](bar.md)
