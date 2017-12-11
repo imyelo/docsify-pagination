@@ -1,22 +1,23 @@
+import EventEmitter from 'eventemitter3'
 import insertCss from 'insert-css'
 import query from 'component-query'
 import matches from 'component-matches-selector'
 
 export function install (hook, vm) {
-  let isReady = false
+  let bus = new EventEmitter()
 
   hook.init(function () {
     css()
   })
 
   hook.afterEach(function (html, next) {
-    if (isReady) {
-      return next(render(html, pagination(vm)))
-    }
-    hook.ready(function () {
-      isReady = true
+    bus.once('done', () => {
       next(render(html, pagination(vm)))
     })
+  })
+
+  hook.doneEach(function() {
+    bus.emit('done')
   })
 }
 
@@ -44,8 +45,12 @@ function link (element) {
 function render (html, data) {
   const template = [
     '<div class="pagination">',
-    data.prev && `<div>&larr; <a href="${data.prev.href}">${data.prev.name}</a></div>`,
-    data.next && `<div><a href="${data.next.href}">${data.next.name}</a> &rarr;</div>`,
+    '<div>',
+    data.prev && `&larr; <a href="${data.prev.href}">${data.prev.name}</a>`,
+    '</div>',
+    '<div>',
+    data.next && `<a href="${data.next.href}">${data.next.name}</a> &rarr;`,
+    '</div>',
     '</div>',
   ].filter(Boolean).join('')
   return html + template
