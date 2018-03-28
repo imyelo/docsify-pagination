@@ -7,9 +7,16 @@ import matches from 'component-matches-selector'
 import stylesheet from './stylesheet.css'
 
 const ICONFONT_CSS_URL = '//at.alicdn.com/t/font_609086_tain7fbkcmzpvi.css'
+const DEFAULT_OPTIONS = {
+  previousText: 'PREVIOUS',
+  nextText: 'NEXT',
+}
+
 
 export function install (hook, vm) {
   let bus = new EventEmitter()
+
+  let options = Object.assign({}, DEFAULT_OPTIONS, vm.config.pagination || {})
 
   hook.init(function () {
     css()
@@ -17,7 +24,7 @@ export function install (hook, vm) {
 
   hook.afterEach(function (html, next) {
     bus.once('done', () => {
-      next(render(html, pagination(vm)))
+      next(render(html, pagination(vm), options))
     })
   })
 
@@ -71,14 +78,14 @@ class Link {
   }
 }
 
-function render (html, data) {
+function render (html, data, options) {
   const template = [
     '<div class="pagination">',
     '<div class="pagination-item pagination-item--previous">',
-    data.prev && `<a href="${data.prev.href}"><div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-previous"></i>上一章节</div><div class="pagination-item-title">${data.prev.name}</div></a>`,
+    data.prev && `<a href="${data.prev.href}"><div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-previous"></i>${options.previousText}</div><div class="pagination-item-title">${data.prev.name}</div></a>`,
     '</div>',
     '<div class="pagination-item pagination-item--next">',
-    data.next && `<a href="${data.next.href}"><div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-next"></i>下一章节</div><div class="pagination-item-title">${data.next.name}</div></a>`,
+    data.next && `<a href="${data.next.href}"><div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-next"></i>${options.nextText}</div><div class="pagination-item-title">${data.next.name}</div></a>`,
     '</div>',
     '</div>',
   ].filter(Boolean).join('')
