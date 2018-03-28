@@ -13,6 +13,10 @@
 .pagination-item--next {
   text-align: right;
 }
+.pagination-item a {
+  text-decoration: none;
+  color: #354a5f;
+}
 .pagination-item-label {
   font-size: 12px;
   opacity: 0.2;
@@ -30,18 +34,17 @@
 .pagination-item--next .pagination-item-label .iconfont-docsify-pagination{
   left: -1em;
 }
-.pagination-item-title a {
+.pagination-item-title {
   font-size: 24px;
   opacity: 0.4;
   transition: all 200ms ease;
-  color: #354a5f;
   text-decoration: none;
 }
-.pagination-item--next .pagination-item-title a {
-  opacity: 0.8;
-}
-.pagination-item-title a:hover {
+.pagination-item a:hover .pagination-item-title {
   opacity: 1;
   transition: all 200ms ease;
   text-decoration: underline;
+}
+.pagination-item--next .pagination-item-title {
+  opacity: 0.8;
 }

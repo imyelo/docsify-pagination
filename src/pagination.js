@@ -75,10 +75,10 @@ function render (html, data) {
   const template = [
     '<div class="pagination">',
     '<div class="pagination-item pagination-item--previous">',
-    data.prev && `<div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-previous"></i>上一章节</div><div class="pagination-item-title"><a href="${data.prev.href}">${data.prev.name}</a></div>`,
+    data.prev && `<a href="${data.prev.href}"><div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-previous"></i>上一章节</div><div class="pagination-item-title">${data.prev.name}</div></a>`,
     '</div>',
     '<div class="pagination-item pagination-item--next">',
-    data.next && `<div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-next"></i>下一章节</div><div class="pagination-item-title"><a href="${data.next.href}">${data.next.name}</a></div>`,
+    data.next && `<a href="${data.next.href}"><div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-next"></i>下一章节</div><div class="pagination-item-title">${data.next.name}</div></a>`,
     '</div>',
     '</div>',
   ].filter(Boolean).join('')
