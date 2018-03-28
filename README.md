@@ -1,5 +1,8 @@
 # docsify-pagination
 
+## How does it look like?
+![screenshot](./_medias/screenshot.png)
+
 ## Install
 1. insert script into document
 
