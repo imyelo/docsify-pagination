@@ -36,7 +36,8 @@
     "component-matches-selector": "^0.1.6",
     "component-query": "0.0.3",
     "eventemitter3": "^3.0.0",
-    "insert-css": "^2.0.0"
+    "insert-css": "^2.0.0",
+    "load-css-file": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -53,6 +54,7 @@
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-string": "^2.0.2",
     "uglify-js": "^3.2.2"
   }
 }

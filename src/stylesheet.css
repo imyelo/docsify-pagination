@@ -1,0 +1,47 @@
+.pagination {
+  margin: 72px 0 48px;
+  border-top: 1px solid hsl(0, 0%, 93%);
+  display: flex;
+  justify-content: space-between;
+  color: #354a5f;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.pagination-item {
+  margin-top: 36px;
+}
+.pagination-item--next {
+  text-align: right;
+}
+.pagination-item-label {
+  font-size: 12px;
+  opacity: 0.2;
+  position: relative;
+  line-height: 1em;
+  display: inline-block;
+}
+.pagination-item-label .iconfont-docsify-pagination {
+  position: absolute;
+  top: 0;
+}
+.pagination-item--previous .pagination-item-label .iconfont-docsify-pagination{
+  right: -1em;
+}
+.pagination-item--next .pagination-item-label .iconfont-docsify-pagination{
+  left: -1em;
+}
+.pagination-item-title a {
+  font-size: 24px;
+  opacity: 0.4;
+  transition: all 200ms ease;
+  color: #354a5f;
+  text-decoration: none;
+}
+.pagination-item--next .pagination-item-title a {
+  opacity: 0.8;
+}
+.pagination-item-title a:hover {
+  opacity: 1;
+  transition: all 200ms ease;
+  text-decoration: underline;
+}

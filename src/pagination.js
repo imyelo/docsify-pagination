@@ -1,8 +1,12 @@
 import EventEmitter from 'eventemitter3'
 import insertCss from 'insert-css'
+import loadCssFile from 'load-css-file'
 import query from 'component-query'
 import closest from 'component-closest'
 import matches from 'component-matches-selector'
+import stylesheet from './stylesheet.css'
+
+const ICONFONT_CSS_URL = '//at.alicdn.com/t/font_609086_tain7fbkcmzpvi.css'
 
 export function install (hook, vm) {
   let bus = new EventEmitter()
@@ -70,11 +74,11 @@ class Link {
 function render (html, data) {
   const template = [
     '<div class="pagination">',
-    '<div>',
-    data.prev && `&larr; <a href="${data.prev.href}">${data.prev.name}</a>`,
+    '<div class="pagination-item pagination-item--previous">',
+    data.prev && `<div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-previous"></i>上一章节</div><div class="pagination-item-title"><a href="${data.prev.href}">${data.prev.name}</a></div>`,
     '</div>',
-    '<div>',
-    data.next && `<a href="${data.next.href}">${data.next.name}</a> &rarr;`,
+    '<div class="pagination-item pagination-item--next">',
+    data.next && `<div class="pagination-item-label"><i class="iconfont-docsify-pagination icon-next"></i>下一章节</div><div class="pagination-item-title"><a href="${data.next.href}">${data.next.name}</a></div>`,
     '</div>',
     '</div>',
   ].filter(Boolean).join('')
@@ -82,13 +86,6 @@ function render (html, data) {
 }
 
 function css () {
-  const template = [
-    '.pagination {',
-    'padding: 1em 0;',
-    'display: flex;',
-    'justify-content: space-between;',
-    '}',
-  ].join('')
-
-  return insertCss(template)
+  insertCss(stylesheet)
+  loadCssFile(ICONFONT_CSS_URL)
 }

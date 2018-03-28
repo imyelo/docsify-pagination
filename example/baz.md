@@ -1,4 +1,4 @@
-# Bar A Long Long Long Title
+# Baz
 
 ## Section 5
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et nulla congue, facilisis felis non, scelerisque mi. Fusce commodo pharetra vehicula. Maecenas ac tristique lectus. Curabitur id convallis dui, tristique consequat dui. Nunc egestas sem et libero maximus mattis. Maecenas consequat volutpat elit et iaculis. Quisque quis nisi varius, rhoncus mauris sit amet, mattis nisl. Praesent at venenatis odio, sed lobortis ligula. Praesent tempus neque non porta viverra. Fusce efficitur sit amet tortor eu maximus. Aliquam iaculis dui nec tincidunt rhoncus. Suspendisse potenti. In ut leo eget mi egestas dictum.
