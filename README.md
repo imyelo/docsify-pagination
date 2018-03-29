@@ -10,7 +10,7 @@
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
   ```
 
-2. specify the label text
+2. specify the label text (optional)
 
   ```javascript
   window.$docsify = {
@@ -34,7 +34,8 @@
 * **Description:** The text of next label.
 
 ## Example
-- [index.html](example/index.html)
+- [example/index.html](example/index.html)
+- [Tina.js](https://tina.js.org/)
 
 ## Related
 - [docsify](https://github.com/QingWei-Li/docsify/)
