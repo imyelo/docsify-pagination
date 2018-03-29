@@ -1,4 +1,9 @@
 # docsify-pagination
+> Pagination for docsify
+
+[![npm](https://img.shields.io/npm/v/docsify-pagination.svg?style=flat-square)](https://www.npmjs.com/package/docsify-pagination)
+[![license](https://img.shields.io/github/license/imyelo/docsify-pagination.svg?style=flat-square)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ## How does it look like?
 ![screenshot](./_medias/screenshot.png)
