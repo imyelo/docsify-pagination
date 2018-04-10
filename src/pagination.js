@@ -4,32 +4,63 @@ import closest from 'component-closest'
 import matches from 'component-matches-selector'
 import stylesheet from './stylesheet.css'
 
+/**
+ * constants
+ */
 const DEFAULT_OPTIONS = {
   previousText: 'PREVIOUS',
   nextText: 'NEXT',
 }
+const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 
+/**
+ * installation
+ */
 export function install (hook, vm) {
-  let bus = new EventEmitter()
-
   let options = Object.assign({}, DEFAULT_OPTIONS, vm.config.pagination || {})
 
-  hook.afterEach(function (html, next) {
-    bus.once('done', () => {
-      next(render(html, pagination(vm), options))
-    })
-  })
+  function render () {
+    const container = query(`.${CONTAINER_CLASSNAME}`)
+    if (!container) {
+      return
+    }
+    container.innerHTML = template.inner(pagination(vm), options)
+  }
 
-  hook.doneEach(function() {
-    bus.emit('done')
-  })
+  hook.afterEach((html) => html + template.container())
+  hook.doneEach(() => render())
 }
 
+/**
+ * basic utilities
+ */
 function toArray (elements) {
   return Array.prototype.slice.call(elements)
 }
 function findHyperlink (li) {
   return toArray(li.children).find((child) => child.tagName && child.tagName.toUpperCase() === 'A')
+}
+
+
+/**
+ * core renderer
+ */
+class Link {
+  constructor (element) {
+    if (!element) {
+      return
+    }
+    this.hyperlink = findHyperlink(element)
+  }
+  toJSON () {
+    if (!this.hyperlink) {
+      return
+    }
+    return {
+      name: this.hyperlink.innerText,
+      href: this.hyperlink.getAttribute('href'),
+    }
+  }
 }
 
 function pagination (vm) {
@@ -52,34 +83,19 @@ function pagination (vm) {
   }
 }
 
-class Link {
-  constructor (element) {
-    if (!element) {
-      return
-    }
-    this.hyperlink = findHyperlink(element)
-  }
-  toJSON () {
-    if (!this.hyperlink) {
-      return
-    }
-    return {
-      name: this.hyperlink.innerText,
-      href: this.hyperlink.getAttribute('href'),
-    }
-  }
-}
+const template = {
+  container () {
+    return `<div class="${CONTAINER_CLASSNAME}"></div>`
+  },
 
-function render (html, data, options) {
-  const template = [
-    '<div class="pagination">',
-    '<div class="pagination-item pagination-item--previous">',
-    data.prev && `<a href="${data.prev.href}"><div class="pagination-item-label">${options.previousText}</div><div class="pagination-item-title">${data.prev.name}</div></a>`,
-    '</div>',
-    '<div class="pagination-item pagination-item--next">',
-    data.next && `<a href="${data.next.href}"><div class="pagination-item-label">${options.nextText}</div><div class="pagination-item-title">${data.next.name}</div></a>`,
-    '</div>',
-    '</div>',
-  ].filter(Boolean).join('')
-  return html + template
+  inner (data, options) {
+    return [
+      '<div class="pagination-item pagination-item--previous">',
+      data.prev && `<a href="${data.prev.href}"><div class="pagination-item-label">${options.previousText}</div><div class="pagination-item-title">${data.prev.name}</div></a>`,
+      '</div>',
+      '<div class="pagination-item pagination-item--next">',
+      data.next && `<a href="${data.next.href}"><div class="pagination-item-label">${options.nextText}</div><div class="pagination-item-title">${data.next.name}</div></a>`,
+      '</div>',
+    ].filter(Boolean).join('')
+  },
 }
