@@ -23,16 +23,18 @@
   position: relative;
   line-height: 1em;
   display: inline-block;
+  background-size: 1em;
+  background-repeat: no-repeat;
 }
-.pagination-item-label .iconfont-docsify-pagination {
-  position: absolute;
-  top: 0;
+.pagination-item--previous .pagination-item-label {
+  padding-right: 1em;
+  background-image: svg-load('./assets/previous.svg', fill=#354a5f);
+  background-position: right center;
 }
-.pagination-item--previous .pagination-item-label .iconfont-docsify-pagination{
-  right: -1em;
-}
-.pagination-item--next .pagination-item-label .iconfont-docsify-pagination{
-  left: -1em;
+.pagination-item--next .pagination-item-label {
+  padding-left: 1em;
+  background-image: svg-load('./assets/next.svg', fill=#354a5f);
+  background-position: left center;
 }
 .pagination-item-title {
   font-size: 24px;
