@@ -35,6 +35,7 @@
     "component-closest": "^1.0.1",
     "component-matches-selector": "^0.1.6",
     "component-query": "0.0.3",
+    "cssnano": "^3.10.0",
     "eventemitter3": "^3.0.0"
   },
   "devDependencies": {
