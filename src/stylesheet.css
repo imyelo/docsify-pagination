@@ -1,17 +1,9 @@
 .docsify-pagination-container {
   display: flex;
-  position: relative;
   flex-wrap: wrap;
   justify-content: space-between;
   overflow: hidden;
   margin: 5em 0 1em;
-}
-.docsify-pagination-container:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.07);
 }
 .pagination-item {
