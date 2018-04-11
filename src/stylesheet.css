@@ -1,52 +1,57 @@
 .docsify-pagination-container {
-  margin: 72px 0 48px;
-  border-top: 1px solid hsl(0, 0%, 93%);
   display: flex;
-  justify-content: space-between;
-  color: #354a5f;
-  overflow: hidden;
   flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: hidden;
+  margin: 5em 0 1em;
+  border-top: 1px solid hsl(0, 0%, 93%);
 }
 .pagination-item {
-  margin-top: 36px;
-}
-.pagination-item--next {
-  text-align: right;
+  margin-top: 2.5em;
 }
 .pagination-item a {
   text-decoration: none;
-  color: #354a5f;
-}
-.pagination-item-label {
-  font-size: 12px;
-  opacity: 0.2;
-  position: relative;
-  line-height: 1em;
-  display: inline-block;
-  background-size: 1em;
-  background-repeat: no-repeat;
-}
-.pagination-item--previous .pagination-item-label {
-  padding-right: 1em;
-  background-image: svg-load('./assets/previous.svg', fill=#354a5f);
-  background-position: right center;
-}
-.pagination-item--next .pagination-item-label {
-  padding-left: 1em;
-  background-image: svg-load('./assets/next.svg', fill=#354a5f);
-  background-position: left center;
-}
-.pagination-item-title {
-  font-size: 24px;
-  opacity: 0.4;
-  transition: all 200ms ease;
-  text-decoration: none;
+  color: currentColor;
 }
 .pagination-item a:hover .pagination-item-title {
-  opacity: 1;
-  transition: all 200ms ease;
   text-decoration: underline;
 }
-.pagination-item--next .pagination-item-title {
-  opacity: 0.8;
+.pagination-item:not(:last-child) a .pagination-item-label,
+.pagination-item:not(:last-child) a .pagination-item-title {
+  opacity: 0.3;
+  transition: all 200ms;
+}
+.pagination-item:last-child .pagination-item-label,
+.pagination-item:not(:last-child) a:hover .pagination-item-label {
+  opacity: 0.6;
+}
+.pagination-item:not(:last-child) a:hover .pagination-item-title {
+  opacity: 1;
+}
+.pagination-item-label {
+  font-size: smaller;
+}
+.pagination-item-label > * {
+  vertical-align: middle;
+}
+.pagination-item-label svg {
+  height: 0.8em;
+  width: auto;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1px;
+}
+.pagination-item--next {
+  margin-left: auto;
+  text-align: right;
+}
+.pagination-item--next svg {
+  margin-right: 0.15em;
+}
+.pagination-item--previous svg {
+  margin-left: 0.15em;
+}
+.pagination-item-title {
+  font-size: 150%;
 }
