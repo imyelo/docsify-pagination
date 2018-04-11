@@ -1,3 +1,5 @@
 import { install } from './pagination'
 
-$docsify.plugins = [].concat(install, $docsify.plugins)
+window.$docsify = window.$docsify || {}
+
+window.$docsify.plugins = [install].concat($docsify.plugins || [])
