@@ -1,4 +1,3 @@
-import EventEmitter from 'eventemitter3'
 import query from 'component-query'
 import closest from 'component-closest'
 import matches from 'component-matches-selector'

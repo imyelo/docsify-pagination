@@ -34,8 +34,7 @@
   "dependencies": {
     "component-closest": "^1.0.1",
     "component-matches-selector": "^0.1.6",
-    "component-query": "0.0.3",
-    "eventemitter3": "^3.0.0"
+    "component-query": "0.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
