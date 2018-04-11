@@ -94,10 +94,10 @@ const template = {
         <div class="pagination-item pagination-item--previous">
           <a href="${data.prev.href}">
             <div class="pagination-item-label">
-              <span>${options.previousText}</span>
               <svg class="icon" width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"/>
               </svg>
+              <span>${options.previousText}</span>
             </div>
             <div class="pagination-item-title">${data.prev.name}</div>
           </a>
@@ -107,10 +107,10 @@ const template = {
         <div class="pagination-item pagination-item--next">
           <a href="${data.next.href}">
             <div class="pagination-item-label">
+              <span>${options.nextText}</span>
               <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline fill="none" vector-effect="non-scaling-stroke" points="2,2 8,8 2,14"/>
               </svg>
-              <span>${options.nextText}</span>
             </div>
             <div class="pagination-item-title">${data.next.name}</div>
           </a>
