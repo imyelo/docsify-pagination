@@ -1,17 +1,36 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Docsify-Pagination Example</title>
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
-    <!-- <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/dark.css"> -->
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Docsify-Pagination Example</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
+  <!-- <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/dark.css"> -->
+  <!-- <style>
+    body {
+      color: yellow;
+      font-size: 20px;
+      background: #999;
+    }
 
-  <body>
-    <div id="app"></div>
-  </body>
+    body .docsify-pagination-container:before {
+      border-width: 5px;
+      border-color: red;
+    }
+
+    body .pagination-item-label svg {
+      height: 1.5em;
+      stroke-linecap: square;
+      stroke-linejoin: square;
+      stroke-width: 3px;
+    }
+  </style> -->
+</head>
+
+<body>
+  <div id="app"></div>
+
   <script>
     window.$docsify = {
       loadSidebar: true,
@@ -19,7 +38,7 @@
       pagination: {
         previousText: '上一章节',
         nextText: '下一章节',
-      },
+      }
     }
   </script>
 
@@ -29,4 +48,5 @@
   <!-- plugins -->
   <script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
   <script src="../dist/docsify-pagination.js"></script>
+</body>
 </html>
