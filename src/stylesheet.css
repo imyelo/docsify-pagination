@@ -9,8 +9,11 @@
 .pagination-item {
   margin-top: 2.5em;
 }
-.pagination-item a {
+.pagination-item a,
+.pagination-item a:hover {
   text-decoration: none;
+}
+.pagination-item a {
   color: currentColor;
 }
 .pagination-item a:hover .pagination-item-title {
@@ -29,7 +32,6 @@
   opacity: 1;
 }
 .pagination-item-label {
-  margin-bottom: 0.35em;
   font-size: 0.8em;
 }
 .pagination-item-label > * {
