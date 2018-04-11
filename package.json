@@ -35,7 +35,6 @@
     "component-closest": "^1.0.1",
     "component-matches-selector": "^0.1.6",
     "component-query": "0.0.3",
-    "cssnano": "^3.10.0",
     "eventemitter3": "^3.0.0"
   },
   "devDependencies": {
@@ -43,10 +42,9 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cssnano": "^3.10.0",
     "deepmerge": "^2.0.1",
     "npm-run-all": "^4.1.2",
-    "postcss-inline-svg": "^3.1.1",
-    "postcss-svgo": "^2.1.6",
     "resolve-from": "^4.0.0",
     "rimraf": "^2.6.2",
     "rollup": "^0.51.5",
@@ -56,6 +54,6 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-postcss": "^1.5.1",
-    "uglify-js": "^3.2.2"
+    "uglify-js": "^3.3.20"
   }
 }
