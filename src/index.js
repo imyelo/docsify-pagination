@@ -2,4 +2,4 @@ import { install } from './pagination'
 
 window.$docsify = window.$docsify || {}
 
-window.$docsify.plugins = [install].concat($docsify.plugins || [])
+window.$docsify.plugins = [install].concat(window.$docsify.plugins || [])
