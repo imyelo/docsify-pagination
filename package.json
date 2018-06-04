@@ -1,6 +1,6 @@
 {
   "name": "docsify-pagination",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "pagination plugin of docsify",
   "main": "src",
   "scripts": {
