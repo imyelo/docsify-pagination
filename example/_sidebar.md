@@ -1,4 +1,4 @@
 - [Home](/)
-- [Foo](foo.md)
+- [Foo](foo.md#section-3)
 - [Bar A Long Long Long Title](bar.md)
 - [Baz](baz.md)

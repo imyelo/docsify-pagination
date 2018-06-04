@@ -39,6 +39,12 @@ function toArray (elements) {
 function findHyperlink (li) {
   return toArray(li.children).find((child) => child.tagName && child.tagName.toUpperCase() === 'A')
 }
+function isALinkTo (path, a) {
+  if (arguments.length === 1) {
+    return (a) => isALinkTo(path, a)
+  }
+  return a.getAttribute('href').split('?')[0] === `#${path}`
+}
 
 
 /**
@@ -66,12 +72,12 @@ function pagination (vm) {
   try {
     const path = vm.route.path
     const all = toArray(query.all('.sidebar li a')).filter((element) => !matches(element, '.section-link'))
-    const active = all.find((item) => item.getAttribute('href') === `#${path}`)
+    const active = all.find(isALinkTo(path))
     const group = toArray((closest(active, 'ul') || {}).children)
       .filter((element) => element.tagName.toUpperCase() === 'LI')
     const index = group.findIndex((item) => {
       const hyperlink = findHyperlink(item)
-      return hyperlink && hyperlink.getAttribute('href') === `#${path}`
+      return hyperlink && isALinkTo(path, hyperlink)
     })
     return {
       prev: new Link(group[index - 1]).toJSON(),
