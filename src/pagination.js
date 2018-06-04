@@ -19,7 +19,7 @@ function toArray (elements) {
   return Array.prototype.slice.call(elements)
 }
 function findHyperlink (li) {
-  return toArray(li.children).find((child) => child.tagName && child.tagName.toUpperCase() === 'A')
+  return query('a', li)
 }
 function isALinkTo (path, element) {
   if (arguments.length === 1) {
