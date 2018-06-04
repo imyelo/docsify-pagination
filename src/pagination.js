@@ -13,24 +13,6 @@ const DEFAULT_OPTIONS = {
 const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 
 /**
- * installation
- */
-export function install (hook, vm) {
-  let options = Object.assign({}, DEFAULT_OPTIONS, vm.config.pagination || {})
-
-  function render () {
-    const container = query(`.${CONTAINER_CLASSNAME}`)
-    if (!container) {
-      return
-    }
-    container.innerHTML = template.inner(pagination(vm), options)
-  }
-
-  hook.afterEach((html) => html + template.container())
-  hook.doneEach(() => render())
-}
-
-/**
  * basic utilities
  */
 function toArray (elements) {
@@ -39,11 +21,11 @@ function toArray (elements) {
 function findHyperlink (li) {
   return toArray(li.children).find((child) => child.tagName && child.tagName.toUpperCase() === 'A')
 }
-function isALinkTo (path, a) {
+function isALinkTo (path, element) {
   if (arguments.length === 1) {
-    return (a) => isALinkTo(path, a)
+    return (element) => isALinkTo(path, element)
   }
-  return a.getAttribute('href').split('?')[0] === `#${path}`
+  return element.getAttribute('href').split('?')[0] === `#${path}`
 }
 
 
@@ -123,4 +105,22 @@ const template = {
       `
     ].filter(Boolean).join('')
   },
+}
+
+/**
+ * installation
+ */
+export function install (hook, vm) {
+  let options = Object.assign({}, DEFAULT_OPTIONS, vm.config.pagination || {})
+
+  function render () {
+    const container = query(`.${CONTAINER_CLASSNAME}`)
+    if (!container) {
+      return
+    }
+    container.innerHTML = template.inner(pagination(vm), options)
+  }
+
+  hook.afterEach((html) => html + template.container())
+  hook.doneEach(() => render())
 }
