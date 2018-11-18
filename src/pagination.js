@@ -25,7 +25,7 @@ function isALinkTo (path, element) {
   if (arguments.length === 1) {
     return (element) => isALinkTo(path, element)
   }
-  return element.getAttribute('href').split('?')[0] === `#${path}`
+  return decodeURI(element.getAttribute('href').split('#')[1]) === decodeURI(path)
 }
 
 
