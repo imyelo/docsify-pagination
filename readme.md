@@ -46,4 +46,4 @@
 - [docsify](https://github.com/QingWei-Li/docsify/)
 
 ## License
-MIT @ [yelo](https://github.com/imyelo)
+MIT &copy; [yelo](https://github.com/imyelo)
