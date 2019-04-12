@@ -9,6 +9,7 @@ import stylesheet from './stylesheet.css'
 const DEFAULT_OPTIONS = {
   previousText: 'PREVIOUS',
   nextText: 'NEXT',
+  crossChapter: false,
 }
 const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 
@@ -18,8 +19,8 @@ const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 function toArray (elements) {
   return Array.prototype.slice.call(elements)
 }
-function findHyperlink (li) {
-  return query('a', li)
+function findHyperlink (element) {
+  return element.href ? element : query('a', element)
 }
 function isALinkTo (path, element) {
   if (arguments.length === 1) {
@@ -50,20 +51,25 @@ class Link {
   }
 }
 
-function pagination (vm) {
+function pagination (vm, crossChapter) {
   try {
     const path = vm.route.path
     const all = toArray(query.all('.sidebar li a')).filter((element) => !matches(element, '.section-link'))
     const active = all.find(isALinkTo(path))
     const group = toArray((closest(active, 'ul') || {}).children)
       .filter((element) => element.tagName.toUpperCase() === 'LI')
-    const index = group.findIndex((item) => {
-      const hyperlink = findHyperlink(item)
-      return hyperlink && isALinkTo(path, hyperlink)
-    })
+    const index = crossChapter
+      ? all.findIndex(isALinkTo(path))
+      : group.findIndex((item) => {
+        const hyperlink = findHyperlink(item)
+        return hyperlink && isALinkTo(path, hyperlink)
+      })
+
+    const links = crossChapter ? all : group
+
     return {
-      prev: new Link(group[index - 1]).toJSON(),
-      next: new Link(group[index + 1]).toJSON(),
+      prev: new Link(links[index - 1]).toJSON(),
+      next: new Link(links[index + 1]).toJSON(),
     }
   } catch (error) {
     return {}
@@ -118,7 +124,7 @@ export function install (hook, vm) {
     if (!container) {
       return
     }
-    container.innerHTML = template.inner(pagination(vm), options)
+    container.innerHTML = template.inner(pagination(vm, options.crossChapter), options)
   }
 
   hook.afterEach((html) => html + template.container())
