@@ -23,6 +23,7 @@
     pagination: {
       previousText: '上一章节',
       nextText: '下一章节',
+      crossChapter: true
     },
   }
   ```
@@ -37,6 +38,11 @@
 * **Default:** ``'NEXT'``
 * **Type:** ``String``
 * **Description:** The text of next label.
+
+### pagination.crossChapter
+* **Default:** `false`
+* **Type:** ``Boolean``
+* **Description:** Allow navigation to previous/next chapter.
 
 ## Example
 - [example/index.html](example/index.html)
