@@ -26,7 +26,7 @@ function isALinkTo (path, element) {
   if (arguments.length === 1) {
     return (element) => isALinkTo(path, element)
   }
-  return decodeURIComponent(element.getAttribute('href').split('?')[0]) === decodeURIComponent(`#${path}`)
+  return decodeURIComponent(element.getAttribute('href').split('?')[0]) === decodeURIComponent(path)
 }
 
 
@@ -53,7 +53,8 @@ class Link {
 
 function pagination (vm, crossChapter) {
   try {
-    const path = vm.route.path
+    const pathPrefix = vm.config.routerMode === 'hash' ? '#' : ''
+    const path = `${pathPrefix}${vm.route.path}`
     const all = toArray(query.all('.sidebar li a')).filter((element) => !matches(element, '.section-link'))
     const active = all.find(isALinkTo(path))
     const group = toArray((closest(active, 'ul') || {}).children)
