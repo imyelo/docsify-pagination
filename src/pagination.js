@@ -19,6 +19,10 @@ const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 function toArray (elements) {
   return Array.prototype.slice.call(elements)
 }
+function findChapter (element) {
+  const container = closest(element, 'div > ul > li')
+  return query('p', container)
+}
 function findHyperlink (element) {
   return element.href ? element : query('a', element)
 }
@@ -38,6 +42,7 @@ class Link {
     if (!element) {
       return
     }
+    this.chapter = findChapter(element)
     this.hyperlink = findHyperlink(element)
   }
   toJSON () {
@@ -47,6 +52,7 @@ class Link {
     return {
       name: this.hyperlink.innerText,
       href: this.hyperlink.getAttribute('href'),
+      chapterName: this.chapter.innerText
     }
   }
 }
@@ -93,6 +99,7 @@ const template = {
               <span>${options.previousText}</span>
             </div>
             <div class="pagination-item-title">${data.prev.name}</div>
+            <div class="pagination-item-subtitle">${data.prev.chapterName}</div>
           </a>
         </div>
       `,
@@ -106,6 +113,7 @@ const template = {
               </svg>
             </div>
             <div class="pagination-item-title">${data.next.name}</div>
+            <div class="pagination-item-subtitle">${data.next.chapterName}</div>
           </a>
         </div>
       `

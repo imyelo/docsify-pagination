@@ -20,7 +20,8 @@
   text-decoration: underline;
 }
 .pagination-item:not(:last-child) a .pagination-item-label,
-.pagination-item:not(:last-child) a .pagination-item-title {
+.pagination-item:not(:last-child) a .pagination-item-title,
+.pagination-item:not(:last-child) a .pagination-item-subtitle {
   opacity: 0.3;
   transition: all 200ms;
 }
@@ -58,4 +59,8 @@
 }
 .pagination-item-title {
   font-size: 1.6em;
+}
+.pagination-item-subtitle {
+  text-transform: uppercase;
+  opacity: 0.3;
 }
