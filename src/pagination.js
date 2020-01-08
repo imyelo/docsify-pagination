@@ -53,7 +53,7 @@ class Link {
     return {
       name: this.hyperlink.innerText,
       href: this.hyperlink.getAttribute('href'),
-      chapterName: this.chapter && this.chapter.innerText
+      chapterName: this.chapter && this.chapter.innerText || ''
     }
   }
 }
