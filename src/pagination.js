@@ -39,11 +39,11 @@ function isALinkTo (path, element) {
  * core renderer
  */
 class Link {
-  constructor (element, showChapterName = false) {
+  constructor (element) {
     if (!element) {
       return
     }
-    this.chapter = showChapterName && findChapter(element)
+    this.chapter = findChapter(element)
     this.hyperlink = findHyperlink(element)
   }
   toJSON () {
@@ -53,7 +53,7 @@ class Link {
     return {
       name: this.hyperlink.innerText,
       href: this.hyperlink.getAttribute('href'),
-      chapterName: this.chapter && this.chapter.innerText || ''
+      chapterName: this.chapter && this.chapter.innerText
     }
   }
 }
@@ -89,6 +89,12 @@ const template = {
   },
 
   inner (data, options) {
+    const prevChapterSubtitle = data.prev &&
+      `<div class="pagination-item-subtitle">${data.prev.chapterName}</div>`;
+
+    const nextChapterSubtitle = data.next &&
+      `<div class="pagination-item-subtitle">${data.next.chapterName}</div>`
+
     return [
       data.prev && `
         <div class="pagination-item pagination-item--previous">
@@ -100,8 +106,9 @@ const template = {
               <span>${options.previousText}</span>
             </div>
             <div class="pagination-item-title">${data.prev.name}</div>
-            <div class="pagination-item-subtitle">${data.prev.chapterName}</div>
-          </a>
+      `,
+      data.prev && options.crossChapterText && `<div class="pagination-item-subtitle">${data.prev.chapterName}</div>`,
+      data.prev && `</a>
         </div>
       `,
       data.next && `
@@ -114,8 +121,9 @@ const template = {
               </svg>
             </div>
             <div class="pagination-item-title">${data.next.name}</div>
-            <div class="pagination-item-subtitle">${data.next.chapterName}</div>
-          </a>
+      `,
+      data.next && options.crossChapterText && `<div class="pagination-item-subtitle">${data.next.chapterName}</div>`,
+      data.next && `</a>
         </div>
       `
     ].filter(Boolean).join('')
