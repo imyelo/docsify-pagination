@@ -10,7 +10,7 @@ const DEFAULT_OPTIONS = {
   previousText: 'PREVIOUS',
   nextText: 'NEXT',
   crossChapter: false,
-  crossChapterText: false
+  crossChapterText: true
 }
 const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 
