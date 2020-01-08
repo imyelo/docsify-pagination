@@ -89,12 +89,6 @@ const template = {
   },
 
   inner (data, options) {
-    const prevChapterSubtitle = data.prev &&
-      `<div class="pagination-item-subtitle">${data.prev.chapterName}</div>`;
-
-    const nextChapterSubtitle = data.next &&
-      `<div class="pagination-item-subtitle">${data.next.chapterName}</div>`
-
     return [
       data.prev && `
         <div class="pagination-item pagination-item--previous">
