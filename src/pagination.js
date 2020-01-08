@@ -10,6 +10,7 @@ const DEFAULT_OPTIONS = {
   previousText: 'PREVIOUS',
   nextText: 'NEXT',
   crossChapter: false,
+  crossChapterText: false
 }
 const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 
@@ -38,11 +39,11 @@ function isALinkTo (path, element) {
  * core renderer
  */
 class Link {
-  constructor (element) {
+  constructor (element, showChapterName = false) {
     if (!element) {
       return
     }
-    this.chapter = findChapter(element)
+    this.chapter = showChapterName && findChapter(element)
     this.hyperlink = findHyperlink(element)
   }
   toJSON () {
@@ -52,7 +53,7 @@ class Link {
     return {
       name: this.hyperlink.innerText,
       href: this.hyperlink.getAttribute('href'),
-      chapterName: this.chapter.innerText
+      chapterName: this.chapter && this.chapter.innerText || ''
     }
   }
 }
