@@ -10,6 +10,7 @@ const DEFAULT_OPTIONS = {
   previousText: 'PREVIOUS',
   nextText: 'NEXT',
   crossChapter: false,
+  crossChapterText: false,
 }
 const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 
@@ -18,6 +19,10 @@ const CONTAINER_CLASSNAME = 'docsify-pagination-container'
  */
 function toArray (elements) {
   return Array.prototype.slice.call(elements)
+}
+function findChapter (element) {
+  const container = closest(element, 'div > ul > li')
+  return query('p', container)
 }
 function findHyperlink (element) {
   return element.href ? element : query('a', element)
@@ -38,6 +43,7 @@ class Link {
     if (!element) {
       return
     }
+    this.chapter = findChapter(element)
     this.hyperlink = findHyperlink(element)
   }
   toJSON () {
@@ -47,6 +53,7 @@ class Link {
     return {
       name: this.hyperlink.innerText,
       href: this.hyperlink.getAttribute('href'),
+      chapterName: this.chapter && this.chapter.innerText || ''
     }
   }
 }
@@ -93,7 +100,9 @@ const template = {
               <span>${options.previousText}</span>
             </div>
             <div class="pagination-item-title">${data.prev.name}</div>
-          </a>
+      `,
+      data.prev && options.crossChapterText && `<div class="pagination-item-subtitle">${data.prev.chapterName}</div>`,
+      data.prev && `</a>
         </div>
       `,
       data.next && `
@@ -106,7 +115,9 @@ const template = {
               </svg>
             </div>
             <div class="pagination-item-title">${data.next.name}</div>
-          </a>
+      `,
+      data.next && options.crossChapterText && `<div class="pagination-item-subtitle">${data.next.chapterName}</div>`,
+      data.next && `</a>
         </div>
       `
     ].filter(Boolean).join('')

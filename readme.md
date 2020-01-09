@@ -23,7 +23,8 @@
     pagination: {
       previousText: '上一章节',
       nextText: '下一章节',
-      crossChapter: true
+      crossChapter: true,
+      crossChapterText: true,
     },
   }
   ```
@@ -43,6 +44,11 @@
 * **Default:** `false`
 * **Type:** ``Boolean``
 * **Description:** Allow navigation to previous/next chapter.
+
+### pagination.crossChapterText
+* **Default:** `false`
+* **Type:** ``Boolean``
+* **Description:** Display chapter name.
 
 ## Example
 - [example/index.html](example/index.html)
