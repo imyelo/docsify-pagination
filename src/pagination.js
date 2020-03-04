@@ -1,8 +1,7 @@
-import { parse as parseUrl } from 'url'
 import query from 'component-query'
 import closest from 'component-closest'
 import matches from 'component-matches-selector'
-import stylesheet from './stylesheet.css'
+import './stylesheet.css'
 
 /**
  * constants
