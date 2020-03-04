@@ -1,17 +1,22 @@
 import query from 'component-query'
 import closest from 'component-closest'
 import matches from 'component-matches-selector'
-import stylesheet from './stylesheet.css'
+import './stylesheet.css'
 
 /**
  * constants
  */
-const DEFAULT_OPTIONS = {
+const ROUTER_MODE = {
+  HASH: 'hash',
+  HISTORY: 'history',
+}
+const DEFAULT_OPTIONS = (config) => ({
   previousText: 'PREVIOUS',
   nextText: 'NEXT',
   crossChapter: false,
   crossChapterText: false,
-}
+  routerMode: config.routerMode || ROUTER_MODE.HASH,
+})
 const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 
 /**
@@ -31,7 +36,7 @@ function isALinkTo (path, element) {
   if (arguments.length === 1) {
     return (element) => isALinkTo(path, element)
   }
-  return decodeURIComponent(element.getAttribute('href').split('?')[0]) === decodeURIComponent(`#${path}`)
+  return decodeURIComponent(element.getAttribute('href').split('?')[0]) === decodeURIComponent(path)
 }
 
 
@@ -58,9 +63,11 @@ class Link {
   }
 }
 
-function pagination (vm, crossChapter) {
+function pagination (vm, { crossChapter, routerMode }) {
   try {
-    const path = vm.route.path
+    const path = routerMode === ROUTER_MODE.HISTORY ?
+      vm.route.path :
+      `#${vm.route.path}`
     const all = toArray(query.all('.sidebar li a')).filter((element) => !matches(element, '.section-link'))
     const active = all.find(isALinkTo(path))
     const group = toArray((closest(active, 'ul') || {}).children)
@@ -128,14 +135,18 @@ const template = {
  * installation
  */
 export function install (hook, vm) {
-  let options = Object.assign({}, DEFAULT_OPTIONS, vm.config.pagination || {})
+  let options = Object.assign(
+    {},
+    DEFAULT_OPTIONS(vm.config),
+    vm.config.pagination || {}
+  )
 
   function render () {
     const container = query(`.${CONTAINER_CLASSNAME}`)
     if (!container) {
       return
     }
-    container.innerHTML = template.inner(pagination(vm, options.crossChapter), options)
+    container.innerHTML = template.inner(pagination(vm, options), options)
   }
 
   hook.afterEach((html) => html + template.container())

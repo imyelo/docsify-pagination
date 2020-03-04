@@ -50,8 +50,14 @@
 * **Type:** ``Boolean``
 * **Description:** Display chapter name.
 
+### pagination.routerMode
+* **Default:** [`window.$docsify.routerMode`](https://docsify.js.org/#/configuration?id=routermode)
+* **Type:** ``String``
+* **Description:** Router mode. In most cases, you don't need to modify it. Docsify-Pagination will take care of it for you.
+
 ## Example
-- [example/index.html](example/index.html)
+- [Example](example/default/index.html)
+- [Example with Docsify's History Route-Mode](example/router-mode-history/index.html)
 - [Tina.js](https://tina.js.org/)
 
 ## Related
