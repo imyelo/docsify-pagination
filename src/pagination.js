@@ -101,7 +101,7 @@ const template = {
         <div class="pagination-item pagination-item--previous">
           <a href="${data.prev.href}">
             <div class="pagination-item-label">
-              <svg class="icon" width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
+              <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"/>
               </svg>
               <span>${options.previousText}</span>
