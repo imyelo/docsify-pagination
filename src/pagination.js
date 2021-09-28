@@ -68,7 +68,7 @@ function pagination (vm, { crossChapter, routerMode }) {
     const path = routerMode === ROUTER_MODE.HISTORY ?
       vm.route.path :
       `#${vm.route.path}`
-    const all = toArray(query.all('.sidebar li a')).filter((element) => !matches(element, '.section-link'))
+    const all = toArray(query.all('.sidebar-nav li a')).filter((element) => !matches(element, '.section-link'))
     const active = all.find(isALinkTo(path))
     const group = toArray((closest(active, 'ul') || {}).children)
       .filter((element) => element.tagName.toUpperCase() === 'LI')
