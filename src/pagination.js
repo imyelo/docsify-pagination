@@ -65,9 +65,10 @@ class Link {
 
 function pagination (vm, { crossChapter, routerMode }) {
   try {
+	const non_empty_path = vm.route.path === '/' ? '/README' : vm.route.path;
     const path = routerMode === ROUTER_MODE.HISTORY ?
-      vm.route.path :
-      `#${vm.route.path}`
+      non_empty_path :
+      `#${non_empty_path}`
     const all = toArray(query.all('.sidebar-nav li a')).filter((element) => !matches(element, '.section-link'))
     const active = all.find(isALinkTo(path))
     const group = toArray((closest(active, 'ul') || {}).children)
