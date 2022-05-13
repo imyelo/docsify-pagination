@@ -131,11 +131,29 @@ const template = {
   },
 }
 
+function updateText (options, path) {
+  ['previousText', 'nextText'].forEach(key => {
+    const text = options[key]
+
+    if (typeof text === 'string') {
+      options[key] = text
+    } else {
+      Object.keys(text).some(local => {
+        const isMatch = path.indexOf(local) > -1
+
+        options[key] = isMatch ? text[local] : text
+
+        return isMatch
+      });
+    }
+  })
+}
+
 /**
  * installation
  */
 export function install (hook, vm) {
-  let options = Object.assign(
+  const options = Object.assign(
     {},
     DEFAULT_OPTIONS(vm.config),
     vm.config.pagination || {}
@@ -143,10 +161,14 @@ export function install (hook, vm) {
 
   function render () {
     const container = query(`.${CONTAINER_CLASSNAME}`)
-    if (!container) {
-      return
-    }
-    container.innerHTML = template.inner(pagination(vm, options), options)
+
+    if (!container) return
+
+    const i18n = JSON.parse(JSON.stringify(options))
+
+    updateText(i18n, vm.route.path);
+
+    container.innerHTML = template.inner(pagination(vm, i18n), i18n)
   }
 
   hook.afterEach((html) => html + template.container())
