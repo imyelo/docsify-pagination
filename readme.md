@@ -22,7 +22,11 @@
     // ...
     pagination: {
       previousText: '上一章节',
-      nextText: '下一章节',
+      // or
+      nextText: {
+        '/en/': 'NEXT',
+        '/': '下一章节'
+      }
       crossChapter: true,
       crossChapterText: true,
     },
@@ -32,12 +36,12 @@
 ## Options
 ### pagination.previousText
 * **Default:** ``'PREVIOUS'``
-* **Type:** ``String``
+* **Type:** ``String | Object``
 * **Description:** The text of previous label.
 
 ### pagination.nextText
 * **Default:** ``'NEXT'``
-* **Type:** ``String``
+* **Type:** ``String | Object``
 * **Description:** The text of next label.
 
 ### pagination.crossChapter
