@@ -59,7 +59,8 @@ class Link {
     return {
       name: this.hyperlink.innerText,
       href: this.hyperlink.getAttribute('href'),
-      chapterName: this.chapter && this.chapter.innerText || ''
+      chapterName: this.chapter && this.chapter.innerText || '',
+      isExternal: this.hyperlink.getAttribute('target') === '_blank',
     }
   }
 }
@@ -100,7 +101,7 @@ const template = {
     return [
       data.prev && `
         <div class="pagination-item pagination-item--previous">
-          <a href="${data.prev.href}">
+          <a href="${data.prev.href}" ${data.prev.isExternal ? 'target="_blank"' : ''}>
             <div class="pagination-item-label">
               <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"/>
@@ -115,7 +116,7 @@ const template = {
       `,
       data.next && `
         <div class="pagination-item pagination-item--next">
-          <a href="${data.next.href}">
+          <a href="${data.next.href}" ${data.next.isExternal ? 'target="_blank"' : ''}>
             <div class="pagination-item-label">
               <span>${nextText}</span>
               <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
