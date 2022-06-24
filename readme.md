@@ -69,12 +69,13 @@
 
 #### How to open these?
 ```bash
+$ git clone https://github.com/imyelo/docsify-pagination.git && cd docsify-pagination && yarn
 $ yarn example
 ```
 
 ### Online Showcase
 - [Tina.js](https://tina.js.org/)
-- [😘 Tell us yours ...](https://github.com/imyelo/docsify-pagination/edit/master/README.md)
+- [😘 Tell us yours ...](https://github.com/imyelo/docsify-pagination/edit/master/readme.md)
 
 ## Related
 - [docsify](https://github.com/QingWei-Li/docsify/)
