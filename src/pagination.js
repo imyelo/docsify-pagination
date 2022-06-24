@@ -32,11 +32,17 @@ function findChapter (element) {
 function findHyperlink (element) {
   return element.href ? element : query('a', element)
 }
+function normailizeLink (path) {
+  if (path && path.toUpperCase() === '#/README') {
+    return '#/'
+  }
+  return path
+}
 function isALinkTo (path, element) {
   if (arguments.length === 1) {
     return (element) => isALinkTo(path, element)
   }
-  return decodeURIComponent(element.getAttribute('href').split('?')[0]) === decodeURIComponent(path)
+  return normailizeLink(decodeURIComponent(element.getAttribute('href').split('?')[0])) === normailizeLink(decodeURIComponent(path))
 }
 
 
