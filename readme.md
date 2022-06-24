@@ -61,9 +61,19 @@
 * **Description:** Router mode. In most cases, you don't need to modify it. Docsify-Pagination will take care of it for you.
 
 ## Example
+### Run example on local
+
 - [Example](example/default/index.html)
 - [Example with Docsify's History Route-Mode](example/router-mode-history/index.html)
+
+#### How to open these
+```bash
+$ yarn example
+```
+
+### Online Showcase
 - [Tina.js](https://tina.js.org/)
+- [Tell us yours 😘](https://github.com/imyelo/docsify-pagination/edit/master/README.md)
 
 ## Related
 - [docsify](https://github.com/QingWei-Li/docsify/)

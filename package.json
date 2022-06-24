@@ -5,6 +5,7 @@
   "main": "src",
   "scripts": {
     "start": "rollup -c -w",
+    "example": "serve",
     "clean": "rimraf ./dist",
     "prebuild": "run-s clean",
     "build": "run-s build:*",
@@ -54,6 +55,7 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-postcss": "^1.5.1",
+    "serve": "^13.0.2",
     "uglify-js": "^3.3.20"
   }
 }
