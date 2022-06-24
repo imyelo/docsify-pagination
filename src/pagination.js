@@ -6,16 +6,11 @@ import './stylesheet.css'
 /**
  * constants
  */
-const ROUTER_MODE = {
-  HASH: 'hash',
-  HISTORY: 'history',
-}
 const DEFAULT_OPTIONS = (config) => ({
   previousText: 'PREVIOUS',
   nextText: 'NEXT',
   crossChapter: false,
   crossChapterText: false,
-  routerMode: config.routerMode || ROUTER_MODE.HASH,
 })
 const CONTAINER_CLASSNAME = 'docsify-pagination-container'
 
@@ -69,11 +64,9 @@ class Link {
   }
 }
 
-function pagination (vm, { crossChapter, routerMode }) {
+function pagination (vm, { crossChapter }) {
   try {
-    const path = routerMode === ROUTER_MODE.HISTORY ?
-      vm.route.path :
-      `#${vm.route.path}`
+    const path = vm.router.toURL(vm.route.path)
     const all = toArray(query.all('.sidebar-nav li a')).filter((element) => !matches(element, '.section-link'))
     const active = all.find(isALinkTo(path))
     const group = toArray((closest(active, 'ul') || {}).children)
