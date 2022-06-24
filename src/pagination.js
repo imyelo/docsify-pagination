@@ -82,6 +82,7 @@ function pagination (vm, { crossChapter, routerMode }) {
     const links = crossChapter ? all : group
 
     return {
+      route: vm.route,
       prev: new Link(links[index - 1]).toJSON(),
       next: new Link(links[index + 1]).toJSON(),
     }
@@ -96,6 +97,7 @@ const template = {
   },
 
   inner (data, options) {
+    const { previousText, nextText } = getLocalizationTexts(options, data.route.path)
     return [
       data.prev && `
         <div class="pagination-item pagination-item--previous">
@@ -104,7 +106,7 @@ const template = {
               <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline fill="none" vector-effect="non-scaling-stroke" points="8,2 2,8 8,14"/>
               </svg>
-              <span>${options.previousText}</span>
+              <span>${previousText}</span>
             </div>
             <div class="pagination-item-title">${data.prev.name}</div>
       `,
@@ -116,7 +118,7 @@ const template = {
         <div class="pagination-item pagination-item--next">
           <a href="${data.next.href}">
             <div class="pagination-item-label">
-              <span>${options.nextText}</span>
+              <span>${nextText}</span>
               <svg width="10" height="16" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg">
                 <polyline fill="none" vector-effect="non-scaling-stroke" points="2,2 8,8 2,14"/>
               </svg>
@@ -131,22 +133,24 @@ const template = {
   },
 }
 
-function updateText (options, path) {
-  ['previousText', 'nextText'].forEach(key => {
+function getLocalizationTexts (options, path) {
+  const texts = {}
+  ;['previousText', 'nextText'].forEach(key => {
     const text = options[key]
 
     if (typeof text === 'string') {
-      options[key] = text
+      texts[key] = text
     } else {
       Object.keys(text).some(local => {
         const isMatch = path.indexOf(local) > -1
 
-        options[key] = isMatch ? text[local] : text
+        texts[key] = isMatch ? text[local] : text
 
         return isMatch
-      });
+      })
     }
   })
+  return texts
 }
 
 /**
@@ -164,11 +168,7 @@ export function install (hook, vm) {
 
     if (!container) return
 
-    const i18n = JSON.parse(JSON.stringify(options))
-
-    updateText(i18n, vm.route.path);
-
-    container.innerHTML = template.inner(pagination(vm, i18n), i18n)
+    container.innerHTML = template.inner(pagination(vm, options), options)
   }
 
   hook.afterEach((html) => html + template.container())
