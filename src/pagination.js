@@ -87,7 +87,9 @@ function pagination (vm, { crossChapter }) {
       next: new Link(links[index + 1]).toJSON(),
     }
   } catch (error) {
-    return {}
+    return {
+      route: {}
+    }
   }
 }
 
@@ -142,7 +144,7 @@ function getLocalizationTexts (options, path) {
       texts[key] = text
     } else {
       Object.keys(text).some(local => {
-        const isMatch = path.indexOf(local) > -1
+        const isMatch = path && path.indexOf(local) > -1
 
         texts[key] = isMatch ? text[local] : text
 
