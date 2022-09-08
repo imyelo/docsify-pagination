@@ -26,7 +26,7 @@
       nextText: {
         '/en/': 'NEXT',
         '/': '下一章节'
-      }
+      },
       crossChapter: true,
       crossChapterText: true,
     },
