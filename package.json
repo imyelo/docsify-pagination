@@ -48,7 +48,7 @@
     "npm-run-all": "^4.1.2",
     "resolve-from": "^4.0.0",
     "rimraf": "^2.6.2",
-    "rollup": "^0.51.5",
+    "rollup": "^2.79.2",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-commonjs": "^8.2.6",
